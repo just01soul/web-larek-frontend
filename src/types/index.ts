@@ -1,5 +1,5 @@
 export type CategoryProduct = 'софт-скил' | 'хард-скил' | 'кнопка' | 'дополнительное' | 'другое';
-export type MethodPay = 'Онлайн' | 'При получении' | '';
+export type MethodPay = 'cash' | 'card' | '';
 export type ValidationErrors = Partial<Record<keyof IOrder, string>>
 
 export interface IProduct {
@@ -17,12 +17,12 @@ export interface IBasket {
 }
 
 export interface IFormAddress {
-	methodpay: MethodPay;
+	payment: MethodPay;
   address: string;
 }
 
 export interface IFormContact {
-	mail: string;
+	email: string;
   phone: string;
 }
 

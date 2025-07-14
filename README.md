@@ -70,7 +70,7 @@
     <li>Тип <code>CategoryProduct = 'софт-скил' | 'хард-скил' | 'кнопка' | 'дополнительное' | 'другое'</code>.
       <p>Описывает категории товаров.</p>
     </li>
-    <li>Тип <code>MethodPay = 'Онлайн' | 'При получении' | ''</code>.
+    <li>Тип <code>MethodPay = 'cash' | 'card' | ''</code>.
       <p>Описывает способы оплаты.</p>
     </li>
     <li>Тип <code>FormError = Partial&ltRecord&ltkeyof IOrder, string&gt&gt</code>.
@@ -102,7 +102,7 @@
       <p>Отображает способ оплаты и адрес доставки.</p>
       <p>Имеет следующие свойства:
         <ul>
-          <li><code>methodpay: MethodPay</code> - способ оплаты товара.</li>
+          <li><code>payment: MethodPay</code> - способ оплаты товара.</li>
           <li><code>address: string</code> - адрес доставки.</li>
         </ul>
       </p>
@@ -111,7 +111,7 @@
       <p>Отображает адрес элекронной почты и номер телефона для связи.</p>
       <p>Имеет следующие свойства:
         <ul>
-          <li><code>mail: string</code> - адрес электронной почты.</li>
+          <li><code>email: string</code> - адрес электронной почты.</li>
           <li><code>phone: string</code> - номер телефона для связи.</li>
         </ul>
       </p>
@@ -144,20 +144,30 @@
         </ul>
       </p>
     </li>
+    <li>Класс <code>ApiWebLarek</code>
+      <p>Расширяет класс Api для работы с конкретным сервером. В конструктор входит три аргумента: <code>cdn: string</code> - URL с контентом, <code>baseUrl: string</code> - базовый URL и <code>options?: RequestInit</code> - опциональные настройки запроса.
+      <p>Имеет следующие методы:
+        <ul>
+          <li><code>getListProducts</code> - получение списка продуктов с сервера.</li>
+          <li><code>getProduct</code> - получение продукта с сервера по запросу id.</li>
+          <li><code>createOrder</code> - передача успешного заказа на сервер и возвращение результата.</li>
+        </ul>
+      </p>
+    </li>
     <li>Класс <code>AppData</code>
-     Отображает форму заказа с полями для указания электронной почты и номера телефона покупателя. В конструктор входит один аргумент: <code>events: IEvents</code> - обработчик событий.</p>
+      Хранит данные и логику работы с ними. В конструктор входит один аргумент: <code>events:   IEvents<code> - обработчик событий.</p>
       <p>Имеет следующие методы:
         <ul>
           <li><code>setProducts</code> - устанавливает список товаров.</li>
           <li><code>setPreview</code> - устанавливает предпросмотр выбранного продукта.</li>
           <li><code>addToBasket</code> - добавляет выбранный продукт в корзину.</li>
           <li><code>deleteFromBasket</code> - удаляет выбранный продукт из корзины.</li>
-          <li><code>inBasket</code> - проверяет наличие выбранного товара в корзине.</li>
+          <li><code>isInBasket</code> - проверяет наличие выбранного товара в корзине.</li>
           <li><code>setMethodPay</code> - устанавливает переданный метод оплаты.</li>
           <li><code>setOrderField</code> - устанавливает в указанном поле формы переданное значение.</li>
           <li><code>validOrder</code> - проводит валидацию заполнения полей формы заказа.</li>
           <li><code>clearBasket</code> - очищает корзину от товаров.</li>
-          <li><code>clearFormOrder</code> - очищает поля формызаказа от всех значений.</li>
+          <li><code>clearFormOrder</code> - очищает поля формы заказа от всех значений.</li>
         </ul>
       </p>
     </li>
@@ -188,16 +198,18 @@
           <li><code>products:change</code> - изменение списка продуктов.</li>
           <li><code>preview:change</code> - изменение выбора открываемого продукта.</li>
           <li><code>card:select</code> - выбор карточки.</li>
-          <li><code>modal:open</code> - открытие модального окна.</li>
+          <li><code>modal:open/:close</code> - открытие/закрытие модального окна.</li>
           <li><code>basket:open</code> - открытие корзины.</li>
           <li><code>basket:change</code> - изменение количества продуктов в корзине.</li>
-          <li><code>order:open</code> - открытие  окна с оформлением заказа.</li>
-          <li><code>orderPayment:change</code> - изменение способа оплаты заказа.</li>
-          <li><code>orderAddress:change</code> - изменение адреса в форме заказа.</li>
-          <li><code>orderСontact:change</code> - изменение контактных данных в форме заказа.</li>
+          <li><code>order:open</code> - открытие окна с оформлением заказа.</li>
+          <li><code>order-payment:change</code> - изменение способа оплаты заказа.</li>
+          <li><code>order-address:change</code> - изменение адреса в форме заказа.</li>
+          <li><code>contacts-email:change</code> - изменение почты в форме заказа.</li>
+          <li><code>contacts-phone:change</code> - изменение номера телефона в форме заказа.</li>
           <li><code>formErrors:change</code> - изменение видов ошибок в валидации формы заказа.</li>
-          <li><code>orderAddress:submit</code> - отправки формы с методом оплаты и адресом доставки.</li>
-          <li><code>orderСontact:submit</code> - отправки формы с контактными данными покупателя.</li>
+          <li><code>order:submit</code> - отправки формы с методом оплаты и адресом доставки.</li>
+          <li><code>contacts:submit</code> - отправки формы с контактными данными покупателя.</li>
+          <li><code>order:finished</code> - завершение окна с успешным оформлением заказа.</li>
         </ul>
       </p>
     </li>
@@ -281,7 +293,7 @@
       </p>
     </li>
     <li>Абстрактный класс <code>FormOrder&ltT&gt</code>
-      <p>Расширяет абстрактный класс <code>Component&ltT&gt</code>. Обеспечивает взаимодействие с формой для оформления заказа. Конструктор состоит из одного наследуемого аргумента: <code>container: HTMLElement</code>, и дополнительного опционального аргумента <code>events: IEvents</code> - обработчик событий.</p>
+      <p>Расширяет абстрактный класс <code>Component&ltT&gt</code>. Обеспечивает взаимодействие с формой для оформления заказа. Конструктор состоит из одного наследуемого аргумента: <code>container: HTMLFormElement</code>, и дополнительного опционального аргумента <code>events: IEvents</code> - обработчик событий.</p>
       <p>Имеет следующие методы - сеттеры:
         <ul>
           <li><code>validForm</code> - устанавливает состояние кнопки отправки формы на  заблокировано/разлокировано.</li>
@@ -296,7 +308,7 @@
       </p>
     </li>
     <li>Класс <code>FormAddress</code>
-      <p>Расширяет абстрактный класс <code>FormOrder&ltT&gt</code> и реализует интерфейс <code>IFormAddress</code>. Отображает форму заказа с выбором метода оплаты и полем для указания адреса доставки. Конструктор состоит из двух наследуемых аргументов: <code>container: HTMLElement</code>, и <code>events: IEvents</code>.</p>
+      <p>Расширяет абстрактный класс <code>FormOrder&ltT&gt</code> и реализует интерфейс <code>IFormAddress</code>. Отображает форму заказа с выбором метода оплаты и полем для указания адреса доставки. Конструктор состоит из двух наследуемых аргументов: <code>container: HTMLFormElement</code>, и <code>events: IEvents</code>.</p>
       <p>Имеет следующие методы - сеттеры:
         <ul>
           <li><code>selectPayment</code> - устанавливает способ оплаты заказа.</li>
@@ -305,7 +317,7 @@
       </p>
     </li>
     <li>Класс <code>FormContact</code>
-      <p>Расширяет абстрактный класс <code>FormOrder&ltT&gt</code> и реализует интерфейс <code>IFormContact</code>. Отображает форму заказа с полями для указания электронной почты и номера телефона покупателя. Конструктор состоит из двух наследуемых аргументов: <code>container: HTMLElement</code>, и <code>events: IEvents</code>.</p>
+      <p>Расширяет абстрактный класс <code>FormOrder&ltT&gt</code> и реализует интерфейс <code>IFormContact</code>. Отображает форму заказа с полями для указания электронной почты и номера телефона покупателя. Конструктор состоит из двух наследуемых аргументов: <code>container: HTMLFormElement</code>, и <code>events: IEvents</code>.</p>
       <p>Имеет следующие методы - сеттеры:
         <ul>
           <li><code>email</code> - устанавливает электронную почту покупателя.</li>

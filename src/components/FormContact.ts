@@ -16,11 +16,11 @@ export class FormContact extends FormOrder<IFormContact> {
 
   // Устанавливает электронную почту покупателя
   set email(value: string) {
-    this.setText(this._email, value);
+    this._email.value = value;
   }
 
   // Устанавливает номер телефона покупателя
   set phone(value: string) {
-    this.setText(this._numberPhone, value);
+    this._numberPhone.value = value;
   }
 }

@@ -11,7 +11,7 @@ import {FormContact} from './components/FormContact';
 import {FormAddress} from './components/FormAddress';
 import {SuccessOrder} from './components/SuccessOrder';
 import {Product} from './components/Product';
-import {IOrder, IProduct, MethodPay} from './types/index';
+import {IOrder, IProduct} from './types/index';
 
 // Создание экзепляра объекта для взаимодействия с сервером
 const api = new ApiWebLarek(CDN_URL, API_URL);
@@ -103,11 +103,11 @@ events.on('basket:open', () => {
 // Изменение количества продуктов в корзине
 events.on('basket:change',() => {
 	page.amountProducts = appData.basket.items.length;
-	basket.items = appData.basket.items.map((id) => {
+	basket.items = appData.basket.items.map((id, index) => {
 		const item = appData.listProducts.find((product) => product.id === id);
 		const cardBasket = new Product(cloneTemplate(productBasketTemplate), {
 			onClick: () => appData.deleteFromBasket(item),
-		});
+		}, index);
 		return cardBasket.render(item);
 	});
 
@@ -116,12 +116,11 @@ events.on('basket:change',() => {
 
 // Открытие окна с оформлением заказа
 events.on('order:open', () => {
-	appData.clearFormOrder();
 	modal.render({
 		content: formAddress.render({
-			address: appData.order.address,
-      payment: appData.order.payment,
-      valid:  appData.validOrder(),
+			address: '',
+      payment: '',
+      valid:  false,
       errors: [],
 		}),
 	});
@@ -155,6 +154,18 @@ events.on('order-address:change', (data: {value: string}) => {
 	appData.setOrderField('address', data.value);
 });
 
+// Открытие окна с контактными данными
+events.on('order:submit', () => {
+	modal.render({
+		content: formContacts.render({
+			email: '',
+			phone: '',
+			valid: false,
+			errors: [],
+		}),
+	});
+});
+
 // Изменение почты в форме заказа
 events.on('contacts-email:change', (data: {value: string}) => {
 	appData.setOrderField('email', data.value);
@@ -163,18 +174,6 @@ events.on('contacts-email:change', (data: {value: string}) => {
 // Изменение номера телефона в форме заказа
 events.on('contacts-phone:change', (data: {value: string}) => {
 	appData.setOrderField('phone', data.value);
-});
-
-// Открытие окна с контактными данными
-events.on('order:submit', () => {
-	modal.render({
-		content: formContacts.render({
-			email: appData.order.email,
-			phone: appData.order.phone,
-			valid: appData.validOrder(),
-			errors: [],
-		}),
-	});
 });
 
 // Отправка формы с контактными данными покупателя
@@ -186,6 +185,8 @@ events.on('contacts:submit', () => {
 				content: successOrder.render(),
 			});
       successOrder.totalOrder = data.total;
+			formAddress.selectPayment = '';
+			formAddress.validForm = false;
 			appData.clearBasket();
 			appData.clearFormOrder();
 		})

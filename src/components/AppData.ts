@@ -36,14 +36,14 @@ export class AppData {
   addToBasket (product: IProduct) {
     this.basket.items.push(product.id);
     this.basket.total += product.price;
-		this.events.emit('basket:change', this.basket);
+		this.events.emit('basket:change');
   }
 
   // Удаляет выбранный продукт в корзину
   deleteFromBasket (product: IProduct) {
     this.basket.items = this.basket.items.filter((id) => id !== product.id);
     this.basket.total -= product.price;
-		this.events.emit('basket:change', this.basket);
+		this.events.emit('basket:change');
   }
 
   // Проверяет наличие выбранного товара в корзине
@@ -100,17 +100,17 @@ export class AppData {
   clearBasket() {
     this.basket.items = [];
     this.basket.total = 0;
-		this.events.emit('basket:change');
+		this.events.emit('basket:change', this.basket);
   }
   
   // Очищает поля формы заказа от всех значений
   clearFormOrder() {
     this.order = {
-			payment: '',
-			address: '',
-			email: '',
-			phone: '',
-		};
+      address: '',
+      payment: '',
+      email: '',
+      phone: '',
+	  };
 		this.events.emit('order:change');
   }
 }

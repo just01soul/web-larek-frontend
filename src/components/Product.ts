@@ -17,8 +17,9 @@ export class Product extends Component<IProduct> {
   protected _description?: HTMLElement;
   protected _price: HTMLElement;
   protected _button?: HTMLButtonElement;
+  protected _index?: HTMLElement;
 
-  constructor (container: HTMLElement, action?: IProductAction) {
+  constructor (container: HTMLElement, action?: IProductAction, index?: number) {
     super(container);
     
     this.container.dataset.id = this._id;
@@ -35,8 +36,11 @@ export class Product extends Component<IProduct> {
         this.container.addEventListener('click', action.onClick);
       }
     }
-  }
 
+    this._index = container.querySelector('.basket__item-index');
+    this.setText(this._index, index + 1);
+  }
+  
   // Устанавливает id для карточки продукта.
   set id (value: string){
     this.container.dataset.id = value;
@@ -85,7 +89,7 @@ export class Product extends Component<IProduct> {
 	}
 
   // Устанавливает цену продукта.
-  set price (value: string){
+  set price (value: string | null){
     this.setText(this._price, value ? `${value} синапсов` : 'Бесценно');
 		if (this._button) {
 			this._button.disabled = !value;

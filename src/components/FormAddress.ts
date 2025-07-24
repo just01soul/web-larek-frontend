@@ -32,6 +32,6 @@ export class FormAddress extends FormOrder<IFormAddress> {
 
   // Устанавливает адрес доставки товара
   set address(value: string) {
-    this.setText(this._address, value);
+    this._address.value = value;
   }
 }

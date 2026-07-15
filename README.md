@@ -340,13 +340,12 @@
 
 <details>
   <summary>Макет задания</summary>
-  [Figma](https://www.figma.com/design/mxvqgpoIjO8MRpsQTcfWq2/8-спринт.-Веб-ларёк--Copy-?t=ZU5ETHaLHdRobJ7c-0)
+   <a href="https://www.figma.com/design/mxvqgpoIjO8MRpsQTcfWq2/8-спринт.-Веб-ларёк--Copy-?t=ZU5ETHaLHdRobJ7c-0">Figma<a>
 </details>
 
 <details>
   <summary>URL решения</summary>
-  [Github](https://github.com/just01soul/web-larek-frontend.git)
-</details>
+   <a href="https://github.com/just01soul/web-larek-frontend.git">Github<a>
 
 <details>
   <summary>Автор</summary>

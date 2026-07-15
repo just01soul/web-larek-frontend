@@ -333,3 +333,15 @@
     </li>
   </ul>
 </details>
+
+---
+
+## Ссылки
+<ul>
+  <li><code>Макет задания</code> [Figma](https://www.figma.com/design/mxvqgpoIjO8MRpsQTcfWq2/8-спринт.-Веб-ларёк--Copy-?t=ZU5ETHaLHdRobJ7c-0)</li>
+  <li><code>URL решения</code> [Github](https://github.com/just01soul/web-larek-frontend.git)</li>
+  <li><code>Автор</code> [Александр Христофоров](https://github.com/just01soul)</li>
+</ul>
+## Благодарность
+
+Выражаю благодарность команде Яндекс Практикум за предоставление дизайна и уроков!

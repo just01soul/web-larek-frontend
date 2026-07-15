@@ -346,7 +346,8 @@
 <details>
   <summary>URL решения</summary>
    <a href="https://github.com/just01soul/web-larek-frontend.git">Github<a>
-
+</details>
+     
 <details>
   <summary>Автор</summary>
     <a href="https://github.com/just01soul">Александр Христофоров<a>

@@ -350,7 +350,7 @@
 
 <details>
   <summary>Автор</summary>
-    [Александр Христофоров](https://github.com/just01soul)
+    <a href="https://github.com/just01soul">Александр Христофоров<a>
 </details>
 
 ---

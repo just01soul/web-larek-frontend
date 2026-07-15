@@ -340,23 +340,17 @@
 
 <details>
   <summary>Макет задания</summary>
-  <ul>
-    <li>[Figma](https://www.figma.com/design/mxvqgpoIjO8MRpsQTcfWq2/8-спринт.-Веб-ларёк--Copy-?t=ZU5ETHaLHdRobJ7c-0)</li>
-  </ul>
+  [Figma](https://www.figma.com/design/mxvqgpoIjO8MRpsQTcfWq2/8-спринт.-Веб-ларёк--Copy-?t=ZU5ETHaLHdRobJ7c-0)
 </details>
 
 <details>
   <summary>URL решения</summary>
-  <ul>
-    <li>[Github](https://github.com/just01soul/web-larek-frontend.git)</li>
-  </ul>
+  [Github](https://github.com/just01soul/web-larek-frontend.git)
 </details>
 
 <details>
   <summary>Автор</summary>
-  <ul>
-    <li>[Александр Христофоров](https://github.com/just01soul)</li>
-  <ul>
+    [Александр Христофоров](https://github.com/just01soul)
 </details>
 
 ---

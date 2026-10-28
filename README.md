@@ -11,8 +11,11 @@
   <ul>
     <li>HTML</li>
     <li>SCSS</li>
-    <li>TS</li>
+    <li>TypeScript</li>
     <li>Webpack</li>
+    <li>React</li>
+    <li>Git</li>
+    <li>REST API</li>
   </ul>
 </details>
 <details>
